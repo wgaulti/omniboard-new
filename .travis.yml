@@ -1,0 +1,26 @@
+language: node_js
+cache:
+  directories:
+  - node_modules
+  - web/node_modules
+node_js:
+- '12'
+sudo: false
+script:
+- cd web && yarn install && cd ..
+- npm run test-ci
+after_success:
+- npm i -g coveralls
+- npm run report-coverage
+branches:
+  only:
+  - master
+  - beta
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+  - npx travis-deploy-once --pro "npx semantic-release"
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(master|beta)$

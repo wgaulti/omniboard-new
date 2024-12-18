@@ -1,0 +1,14 @@
+.table-display {
+  display: table;
+  width: 100%;
+  height: 100%;
+  .table-cell-display {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.gray {
+  color: #808080;
+}

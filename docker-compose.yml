@@ -1,0 +1,16 @@
+# docker-compose.yml
+
+version: '3'
+services:
+
+  omniboard:
+    image: omniboard-new:latest
+    command: ["--mu", "mongodb+srv://${ATLAS_USER}:${ATLAS_PASSWORD}@${ATLAS_URL}/${DB_NAME}"]
+    ports:
+      - 127.0.0.1:9000:9000
+    networks:
+      - omniboard
+    restart: always
+
+networks:
+  omniboard:
